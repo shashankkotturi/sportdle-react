@@ -59,6 +59,18 @@ app.get("/lyrics", async (req, res) => {
     res.json({ lyrics })
 })
 
+app.get("/playlists", async (req, res) => {
+    const { username } = req.query
+    const spotifyApi = new SpotifyWebApi({
+        redirectUri: process.env.REDIRECT_URI,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+    })
+
+    const playlists = (await spotifyApi.getUserPlaylists(username)) || "No Playlist Found"
+    res.json({ playlists })
+})
+
 app.listen(PORT, err => {
     if (err) console.log(err)
     console.log("listening on port", PORT)

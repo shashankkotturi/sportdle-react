@@ -38,3 +38,26 @@ export const PlayerContainer = styled.div`
   bottom: 0;
   left: 0;
 `
+
+export const UserNameInput = styled.input`
+  width: 100%;
+  height: 55px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+
+  &::placeholder {
+    font-size: 1.5rem;
+  }
+`
+
+export const PlaylistResultsContainer = styled.div`
+  flex-grow: 1;
+  margin: 3rem 0;
+  overflow-y: auto;
+  overflow-x: auto;
+`
+
+export const TitleText = styled.p`
+  color: #fff;
+`

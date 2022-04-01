@@ -8,9 +8,9 @@ import {
     ArtistText,
 } from "./styles/TrackSearchResults.styles"
 
-const TrackSearchResult = ({ track, chooseTrack }) => {
+const TrackSearchResult = ({ track, checkGuess }) => {
     function handlePlay() {
-        chooseTrack(track)
+        checkGuess(track)
     }
 
     return (
