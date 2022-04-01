@@ -31,6 +31,7 @@ const Dashboard = ({ code }) => {
     const[myPlaylists, setMyPlaylists] = useState([])
     const[myPlaylist, setMyPlaylist] = useState([])
     const[myGuesses, setMyGuesses] = useState(0)
+    const{guessedCorrectly, setGuessedCorrectly} = useState(false)
 
     function chooseTrack(track) {
         console.log("Track playing now:", track)
@@ -44,16 +45,18 @@ const Dashboard = ({ code }) => {
         setSearch("")
         setLyrics("")
         setMyGuesses(0)
+        setGuessedCorrectly(false)
     }
 
     function checkGuess(guessTrack) {
-        console.log("guessTrack:", guessTrack.uri)
-        console.log("PlayingTrack:", playingTrack.uri)
+        console.log(guessedCorrectly)
+        if (guessedCorrectly === true) {
+            return
+        }
         if(guessTrack.uri === playingTrack.uri) {
             console.log("# of tries to guess correctly:", myGuesses + 1)
-            setMyGuesses(0)
-            setMyPlaylist([])
-            return
+            setGuessedCorrectly(true)
+            console.log("Guessed correctly:", guessedCorrectly)
         }
         setMyGuesses(myGuesses + 1)
     }
@@ -199,7 +202,8 @@ const Dashboard = ({ code }) => {
                     value={search}
                     onChange={e => setSearch(e.target.value)}
                 />
-                <ResultsContainer>
+                <ResultsContainer>                    
+                    <TitleText>You have used {myGuesses} guesses.</TitleText>
                     {searchResults.map(track => (
                         <TrackSearchResult
                             track={track}
@@ -209,6 +213,7 @@ const Dashboard = ({ code }) => {
                     ))}
                     <LyricsContainer>{lyrics}</LyricsContainer>
                 </ResultsContainer>
+                
                 <PlayerContainer>
                     <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
                 </PlayerContainer>
