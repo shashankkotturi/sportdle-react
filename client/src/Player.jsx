@@ -23,8 +23,10 @@ const Player = ({ accessToken, trackUri }) => {
                 color: "#fff",
                 loaderColor: "#fff",
                 sliderColor: "#1cb954",
-                trackArtistColor: "#ccc",
-                trackNameColor: "#fff",
+                // trackArtistColor: "#ccc",
+                trackArtistColor: "#333",
+                // trackNameColor: "#fff",
+                trackNameColor: "#333",
                 height: "55px",
             }}
         />
