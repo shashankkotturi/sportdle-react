@@ -17,6 +17,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "dev": "react-scripts start --env.ENVIRONMENT=development",
     "start": "react-scripts start --env.ENVIRONMENT=preview",
     "build": "react-scripts build",
     "test": "react-scripts test",
