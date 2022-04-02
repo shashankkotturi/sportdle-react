@@ -31,7 +31,7 @@ const Dashboard = ({ code }) => {
     const[myPlaylists, setMyPlaylists] = useState([])
     const[myPlaylist, setMyPlaylist] = useState([])
     const[myGuesses, setMyGuesses] = useState(0)
-    const{guessedCorrectly, setGuessedCorrectly} = useState(false)
+    const[guessedCorrectly, setGuessedCorrectly] = useState(1)
 
     function chooseTrack(track) {
         console.log("Track playing now:", track)
@@ -45,17 +45,15 @@ const Dashboard = ({ code }) => {
         setSearch("")
         setLyrics("")
         setMyGuesses(0)
-        setGuessedCorrectly(false)
+        setGuessedCorrectly(0)
     }
 
     function checkGuess(guessTrack) {
         console.log(guessedCorrectly)
-        if (guessedCorrectly === true) {
-            return
-        }
+        if (guessedCorrectly) return
         if(guessTrack.uri === playingTrack.uri) {
             console.log("# of tries to guess correctly:", myGuesses + 1)
-            setGuessedCorrectly(true)
+            setGuessedCorrectly(1)
             console.log("Guessed correctly:", guessedCorrectly)
         }
         setMyGuesses(myGuesses + 1)
@@ -167,7 +165,6 @@ const Dashboard = ({ code }) => {
 
         return () => {cancel = true}
     }, [myPlaylist, accessToken])
-
 
     return(
         <DashboardContainer>
