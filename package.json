@@ -9,7 +9,7 @@
     "server": "cd server && npm start",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "client-build": "cd client && npm run build",
-    "server-build": "cd server && start",
+    "server-build": "cd server && npm start",
     "build": "concurrently \"npm run client-build\" \"npm run server-build\""
   },
   "repository": {
