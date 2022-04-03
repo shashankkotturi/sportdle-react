@@ -16,6 +16,8 @@ import {
     TitleText,
 } from "./styles/Dashboard.styles"
 import Math from "math"
+import Button from "react-bootstrap/Button"
+import Modal from "react-bootstrap/Modal"
 
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.REACT_APP_CLIENT_ID,
@@ -32,6 +34,7 @@ const Dashboard = ({ code }) => {
     const[myPlaylist, setMyPlaylist] = useState([])
     const[myGuesses, setMyGuesses] = useState(0)
     const[guessedCorrectly, setGuessedCorrectly] = useState(1)
+    const[isOpen, setIsOpen] = useState(false)
 
     function chooseTrack(track) {
         console.log("Track playing now:", track)
@@ -55,8 +58,23 @@ const Dashboard = ({ code }) => {
             console.log("# of tries to guess correctly:", myGuesses + 1)
             setGuessedCorrectly(1)
             console.log("Guessed correctly:", guessedCorrectly)
+            toggleModal()
         }
         setMyGuesses(myGuesses + 1)
+    }
+
+    function toggleModal() {
+        setIsOpen(!isOpen)
+    }
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+    function closeModal() {
+        console.log("Close modal!")
+        choosePlaylist([])
+        toggleModal()
     }
 
     useEffect(() => {
@@ -216,7 +234,22 @@ const Dashboard = ({ code }) => {
                 </PlayerContainer>
                 </div>            
             : null}
-            
+            {guessedCorrectly && isOpen?
+                <Modal show={isOpen} onHide={closeModal}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>You won!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>You guessed correctly in {myGuesses} {myGuesses > 1 ? "guesses" : "guess"}</Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="success" onClick={closeModal}>
+                        Close
+                    </Button>
+                    {/* <Button variant="primary" onClick={closeModal}>
+                        Save Changes
+                    </Button> */}
+                    </Modal.Footer>
+                </Modal>
+            :null            }
         </DashboardContainer>
     )
 }
