@@ -41,7 +41,7 @@
     "react-spotify-web-playback": "^0.9.1",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4",
-    "concurrent": "^7.5.4"
+    "concurrently": "^7.5.4"
   },
   "engines" : { 
     "node" : "16.x",
