@@ -76,9 +76,9 @@ app.get("/playlists", async (req, res) => {
     res.json({ playlists })
 })
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
-})
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+// })
 
 app.listen(PORT, err => {
     if (err) console.log(err)
