@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client && npm start",
     "server": "cd server && npm start",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "client-build": "cd client && npm run build",
+    "start": "npm run server",
+    "client-build": "cd client && npm install && npm run build",
     "server-build": "cd server && npm start",
-    "build": "concurrently \"npm run client-build\" \"npm run server-build\""
+    "heroku-postbuild": "npm run client-build"
   },
   "repository": {
     "type": "git",

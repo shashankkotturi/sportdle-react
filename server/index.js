@@ -3,6 +3,8 @@ import cors from "cors"
 import lyricsFinder from "lyrics-finder"
 import SpotifyWebApi from "spotify-web-api-node"
 import dotenv from "dotenv"
+import path from "path"
+const __dirname = path.resolve()
 
 const app = express()
 dotenv.config()
@@ -13,6 +15,8 @@ app.use(express.urlencoded({ extended: true }))
 
 const PORT = process.env.PORT || 3001
 console.log("Environment:", process.env.REDIRECT_URI)
+
+app.use(express.static(path.join(__dirname, "..", "client", "build")))
 
 app.post("/login", async (req, res) => {
     const { code } = req.body
@@ -70,6 +74,10 @@ app.get("/playlists", async (req, res) => {
 
     const playlists = (await spotifyApi.getUserPlaylists(username)) || "No Playlist Found"
     res.json({ playlists })
+})
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
 })
 
 app.listen(PORT, err => {
