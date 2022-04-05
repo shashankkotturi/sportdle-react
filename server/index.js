@@ -13,7 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 console.log("Environment:", process.env.REDIRECT_URI)
 
 app.use(express.static(path.join(__dirname, "..", "client", "build")))
