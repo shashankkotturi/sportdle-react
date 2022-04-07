@@ -41,7 +41,8 @@
     "react-spotify-web-playback": "^0.9.1",
     "spotify-web-api-node": "^5.0.2",
     "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-copy-to-clipboard": "^5.0.4"
   },
   "engines": {
     "node": "16.x",
