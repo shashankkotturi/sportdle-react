@@ -19,6 +19,8 @@ import Math from "math"
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 
+import {CopyToClipboard} from "react-copy-to-clipboard"
+
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.REACT_APP_CLIENT_ID,
 })
@@ -35,6 +37,8 @@ const Dashboard = ({ code }) => {
     const[myGuesses, setMyGuesses] = useState(0)
     const[guessedCorrectly, setGuessedCorrectly] = useState(1)
     const[isOpen, setIsOpen] = useState(false)
+    const[shareText, setShareText] = useState("")
+    const[copied, setCopied] = useState(false)
 
     function chooseTrack(track) {
         console.log("Track playing now:", track)
@@ -49,6 +53,8 @@ const Dashboard = ({ code }) => {
         setLyrics("")
         setMyGuesses(0)
         setGuessedCorrectly(0)
+        setShareText("")
+        setCopied(false)
     }
 
     function checkGuess(guessTrack) {
@@ -59,16 +65,19 @@ const Dashboard = ({ code }) => {
             setGuessedCorrectly(1)
             console.log("Guessed correctly:", guessedCorrectly)
             toggleModal()
+            let text = ""
+            for(let i = 0; i < myGuesses; i++) {
+                text += "❌\r\n"
+            }
+            text += "✔️" + playingTrack.title + "\r\nPlay Sportdle at https://sportdle-react.herokuapp.com/"
+            setShareText(text)
+            // setShareText(`I guessed ${playingTrack.title} in ${myGuesses+1} guess(es)!\r\nPlay Sportdle at https://sportdle-react.herokuapp.com/`)
         }
         setMyGuesses(myGuesses + 1)
     }
 
     function toggleModal() {
         setIsOpen(!isOpen)
-    }
-
-    function openModal() {
-        setIsOpen(true)
     }
 
     function closeModal() {
@@ -241,12 +250,17 @@ const Dashboard = ({ code }) => {
                     </Modal.Header>
                     <Modal.Body>You guessed correctly in {myGuesses} {myGuesses > 1 ? "guesses" : "guess"}</Modal.Body>
                     <Modal.Footer>
-                    <Button variant="success" onClick={closeModal}>
+                    {copied ? <span style={{color: 'red'}}>Copied!</span> : null}
+                    {/* <CopyToClipboard text={`I guessed my song correctly in ${myGuesses} guess(es).`} onCopy={() => setCopied(true)}> */}
+                    <CopyToClipboard text={shareText} onCopy={() => setCopied(true)}>
+                        <Button variant="primary">
+                            Share results!
+                        </Button>
+                    </CopyToClipboard>
+                    <Button variant="secondary" onClick={closeModal}>
                         Close
                     </Button>
-                    {/* <Button variant="primary" onClick={closeModal}>
-                        Save Changes
-                    </Button> */}
+
                     </Modal.Footer>
                 </Modal>
             :null            }
