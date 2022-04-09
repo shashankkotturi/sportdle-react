@@ -67,9 +67,9 @@ const Dashboard = ({ code }) => {
             toggleModal()
             let text = ""
             for(let i = 0; i < myGuesses; i++) {
-                text += "❌\r\n"
+                text += "❌"
             }
-            text += "✔️" + playingTrack.title + "\r\nPlay Sportdle at https://sportdle-react.herokuapp.com/"
+            text += "✔️\n" + "I guessed " + playingTrack.title + " by " + playingTrack.artist + " in " + `${myGuesses+1}` + " guess(es).\r\nFind out how well you know your playlists too at https://sportdle-react.herokuapp.com/"
             setShareText(text)
             // setShareText(`I guessed ${playingTrack.title} in ${myGuesses+1} guess(es)!\r\nPlay Sportdle at https://sportdle-react.herokuapp.com/`)
         }
@@ -248,7 +248,7 @@ const Dashboard = ({ code }) => {
                     <Modal.Header closeButton>
                     <Modal.Title>You won!</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>You guessed correctly in {myGuesses} {myGuesses > 1 ? "guesses" : "guess"}</Modal.Body>
+                    <Modal.Body>You guessed correctly in {myGuesses} {myGuesses > 1 ? "guesses." : "guess."}</Modal.Body>
                     <Modal.Footer>
                     {copied ? <span style={{color: 'red'}}>Copied!</span> : null}
                     {/* <CopyToClipboard text={`I guessed my song correctly in ${myGuesses} guess(es).`} onCopy={() => setCopied(true)}> */}
@@ -257,7 +257,7 @@ const Dashboard = ({ code }) => {
                             Share results!
                         </Button>
                     </CopyToClipboard>
-                    <Button variant="secondary" onClick={closeModal}>
+                    <Button variant="success" onClick={closeModal}>
                         Close
                     </Button>
 
