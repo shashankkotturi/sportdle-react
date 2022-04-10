@@ -194,19 +194,18 @@ const Dashboard = ({ code }) => {
 
     return(
         <DashboardContainer>
-            {/* <Navbar bg="dark" variant="dark">
-                <Container>
-                <Navbar.Brand>
-                    <img
+            <Navbar bg="#000000" variant="dark">
+                <Navbar.Brand style={{"color": '#1db954', "font-size": '300%'}}>
+                    {/* <img
                     alt=""
-                    src="../public/logo.svg"
-                    width="300"
-                    height="300"
+                    src="../public/logo-32x32.png"
+                    width="32"
+                    height="32"
                     className="d-inline-block align-top"
-                    />
+                    /> */}
+                   Sportdle
                 </Navbar.Brand>
-                </Container>
-            </Navbar> */}
+            </Navbar>
             {Object.keys(myPlaylist).length === 0 ?
                 <div>
                 <UserNameInput
