@@ -38,6 +38,7 @@ const Dashboard = ({ code }) => {
     const[isOpen, setIsOpen] = useState(false)
     const[shareText, setShareText] = useState("")
     const[copied, setCopied] = useState(false)
+    const[guessList, setGuessList] = useState([])
 
     function chooseTrack(track) {
         console.log("Track playing now:", track)
@@ -54,6 +55,11 @@ const Dashboard = ({ code }) => {
         setGuessedCorrectly(0)
         setShareText("")
         setCopied(false)
+        setGuessList([])
+    }
+
+    function addToGuessList(track) {
+        setGuessList(guessList.concat(track))
     }
 
     function checkGuess(guessTrack) {
@@ -73,6 +79,9 @@ const Dashboard = ({ code }) => {
             // setShareText(`I guessed ${playingTrack.title} in ${myGuesses+1} guess(es)!\r\nPlay Sportdle at https://sportdle-react.herokuapp.com/`)
         }
         setMyGuesses(myGuesses + 1)
+        addToGuessList(guessTrack)
+        console.log("Search results", searchResults)
+        console.log(guessList)
     }
 
     function toggleModal() {
@@ -239,6 +248,9 @@ const Dashboard = ({ code }) => {
                 />
                 <ResultsContainer>                    
                     <TitleText>You have used {myGuesses} guesses.</TitleText>
+                    {guessList ? Object.keys(guessList).map(key => (
+                            <TitleText>{playingTrack.uri === guessList[key].uri ? "✔️" : "❌"} {guessList[key].title} by {guessList[key].artist}</TitleText>
+                    )):null}
                     {searchResults.map(track => (
                         <TrackSearchResult
                             track={track}
