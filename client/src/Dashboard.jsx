@@ -72,9 +72,9 @@ const Dashboard = ({ code }) => {
             toggleModal()
             let text = ""
             for(let i = 0; i < myGuesses; i++) {
-                text += "❌"
+                text += "❌ " + guessList[i].title + " by " + guessList[i].artist + "\r\n"
             }
-            text += "✔️\n" + "I guessed " + playingTrack.title + " by " + playingTrack.artist + " in " + `${myGuesses+1}` + " guess(es).\r\nFind out how well you know your playlists too at https://sportdle-react.herokuapp.com/"
+            text += "✔️ " + playingTrack.title + " by " + playingTrack.artist + "\r\nFind out how well you know your playlists too at https://sportdle-react.herokuapp.com/"
             setShareText(text)
             // setShareText(`I guessed ${playingTrack.title} in ${myGuesses+1} guess(es)!\r\nPlay Sportdle at https://sportdle-react.herokuapp.com/`)
         }
