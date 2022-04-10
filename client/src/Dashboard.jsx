@@ -16,8 +16,7 @@ import {
     TitleText,
 } from "./styles/Dashboard.styles"
 import Math from "math"
-import Button from "react-bootstrap/Button"
-import Modal from "react-bootstrap/Modal"
+import { Button, Modal, Navbar, Container } from "react-bootstrap"
 
 import {CopyToClipboard} from "react-copy-to-clipboard"
 
@@ -195,6 +194,19 @@ const Dashboard = ({ code }) => {
 
     return(
         <DashboardContainer>
+            {/* <Navbar bg="dark" variant="dark">
+                <Container>
+                <Navbar.Brand>
+                    <img
+                    alt=""
+                    src="../public/logo.svg"
+                    width="300"
+                    height="300"
+                    className="d-inline-block align-top"
+                    />
+                </Navbar.Brand>
+                </Container>
+            </Navbar> */}
             {Object.keys(myPlaylist).length === 0 ?
                 <div>
                 <UserNameInput
@@ -235,7 +247,7 @@ const Dashboard = ({ code }) => {
                             checkGuess={checkGuess}
                         />
                     ))}
-                    <LyricsContainer>{lyrics}</LyricsContainer>
+                    {/* <LyricsContainer>{lyrics}</LyricsContainer> */}
                 </ResultsContainer>
                 
                 <PlayerContainer>

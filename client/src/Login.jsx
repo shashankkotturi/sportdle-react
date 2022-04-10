@@ -7,7 +7,7 @@ const Login = () => {
 
   return (
     <>
-    <p style={{color:"white"}}>This app only works if you have a Spotify Premium account!</p>
+    <p style={{"color":"white", "text-align": "center"}}>Welcome to Sportdle!<br/>This app only works if you have a Spotify Premium account!</p>
     <LoginButton>
       <LoginLink href={AUTH_URL}>Login with Spotify</LoginLink>
     </LoginButton>
