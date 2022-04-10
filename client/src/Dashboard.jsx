@@ -65,7 +65,8 @@ const Dashboard = ({ code }) => {
     function checkGuess(guessTrack) {
         console.log(guessedCorrectly)
         if (guessedCorrectly) return
-        if(guessTrack.uri === playingTrack.uri) {
+        // if(guessTrack.uri === playingTrack.uri || guessTrack.artist === playingTrack.artist && guessTrack.title === playingTrack.title) {
+        if(approxGuessCheck(guessTrack, playingTrack)) {    
             console.log("# of tries to guess correctly:", myGuesses + 1)
             setGuessedCorrectly(1)
             console.log("Guessed correctly:", guessedCorrectly)
@@ -92,6 +93,13 @@ const Dashboard = ({ code }) => {
         console.log("Close modal!")
         choosePlaylist([])
         toggleModal()
+    }
+
+    function approxGuessCheck(guessTrack, playingTrack) {
+        if(guessTrack.uri === playingTrack.uri || guessTrack.artist === playingTrack.artist && guessTrack.title === playingTrack.title) {
+            return true
+        }
+        return false
     }
 
     useEffect(() => {
@@ -249,7 +257,12 @@ const Dashboard = ({ code }) => {
                 <ResultsContainer>                    
                     <TitleText>You have used {myGuesses} guesses.</TitleText>
                     {guessList ? Object.keys(guessList).map(key => (
-                            <TitleText>{playingTrack.uri === guessList[key].uri ? "✔️" : "❌"} {guessList[key].title} by {guessList[key].artist}</TitleText>
+                            <TitleText>
+                                {
+                                    approxGuessCheck(guessList[key], playingTrack)
+                                    ? "✔️" : "❌"
+                                } {guessList[key].title} by {guessList[key].artist}
+                            </TitleText>
                     )):null}
                     {searchResults.map(track => (
                         <TrackSearchResult
