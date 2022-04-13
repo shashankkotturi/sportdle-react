@@ -7,7 +7,7 @@ const Login = () => {
 
   return (
     <>
-    <p style={{"color":"white", "text-align": "center"}}>Welcome to Sportdle!<br/>This app only works if you have a Spotify Premium account!</p>
+    <p style={{"color":"white", "text-align": "center"}}>Welcome to Sportdle!<br/>This app only works if you have a Spotify Premium account.<br/>View this project on <a target="_blank" style={{"color":"#1db954", "underline":"true"}} href="https://github.com/shashankkotturi/sportdle-react"><u>GitHub</u></a>, including a quick demo.</p>
     <LoginButton>
       <LoginLink href={AUTH_URL}>Login with Spotify</LoginLink>
     </LoginButton>
